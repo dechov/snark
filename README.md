@@ -1,14 +1,16 @@
 # Snark
 
-A snake game in too many dimensions.
+A **snake** game in **too many dimensions**.
+
+Danger! Work in progress!
 
 
 ## Controls
 
 ### Snake control
 
-- wasd (or arrow keys) for 2D directions
-- Simultaneous
+- wasd (or arrow keys) for the boring dimensions
+- Combinations for 3rd dimension
   - ws: farther
   - ad: closer
 
@@ -21,6 +23,14 @@ A snake game in too many dimensions.
   - Click+circle: rotate 90 degrees
 
 
-## Features
+## Unreasonable desires
 
-- mini POV view
+- Mini POV
+- Multiplayer over network
+
+
+## Dependencies
+
+- [three.js](https://github.com/mrdoob/three.js)
+- [ember.js](https://github.com/emberjs/ember.js): the DOM-free parts (coming soon to your local bookseller)
+

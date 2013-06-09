@@ -4,11 +4,15 @@
         <meta charset="utf-8">
         <title>snark</title>
 
-        <!-- build:css styles/main.css -->
-        <link rel="stylesheet" href="styles/normalize.css">
-        <link rel="stylesheet" href="styles/style.css">
-        <!-- endbuild -->
-</head>
+        <style type="text/css">
+        html, body, .container {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          overflow: hidden;
+        }
+        </style>
+    </head>
     <body>
         <!-- build:js scripts/components.js -->
         <script src="components/jquery/jquery.js"></script>
@@ -21,9 +25,5 @@
         <script src="scripts/lib/THREEx.KeyboardState.js"></script>
         <script src="scripts/app.js"></script>
         <!-- endbuild -->
-
-        <!-- build:js(.tmp) scripts/templates.js -->
-        <script src="scripts/compiled-templates.js"></script>
-        <!-- endbuild -->
-</body>
+    </body>
 </html>
