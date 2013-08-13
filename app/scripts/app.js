@@ -213,7 +213,8 @@ App.Voxel3DView = App.Object3DView.extend({
     var scale = this.get('scale');
     var offset = -7;
     var geometry = new THREE.CubeGeometry( scale+offset, scale+offset, scale+offset );
-    var material = new THREE.MeshLambertMaterial( { color: this.get('color') } );
+    var material = new THREE.MeshLambertMaterial( { color: this.get('color'), transparent: true } );
+    material.opacity = 0.75;
     return new THREE.Mesh( geometry, material );
   }.property(),
   render: function(scene) {
@@ -234,7 +235,7 @@ App.Snake3DView = App.Object3DView.extend({
     var childViews = [];
     this.get('context.segments').forEach(function(segment) {
       childViews.pushObject(App.Voxel3DView.create({
-        color: 0xcc0000,
+        color: 0xdd2222,
         context: segment
       }).render(scene));
     });
@@ -246,7 +247,7 @@ App.Snake3DView = App.Object3DView.extend({
 App.Player3DView = App.Object3DView.extend({
   camera: function() {
     return new THREE.PerspectiveCamera(
-      90,  // VIEW_ANGLE
+      75,  // VIEW_ANGLE
       window.innerWidth / window.innerHeight,  // ASPECT = WIDTH / HEIGHT
       1,  // NEAR
       10000  // FAR);
@@ -255,9 +256,18 @@ App.Player3DView = App.Object3DView.extend({
   render: function(scene) {
     var camera = this.get('camera');
     scene.add(camera);
-    // camera.position.y = 1000;
-    camera.position.z = 1000;
-    camera.lookAt(new THREE.Vector3())
+  
+    var coords = {};
+    coords.x = 0;
+    coords.y = 0;
+    coords.z = 1200;
+                                           
+    camera.rotation.y = 45;
+    camera.position.x = coords.x;
+    camera.position.y = coords.y;
+    camera.position.z = coords.z;
+    // Always look at the origin
+    camera.lookAt(new THREE.Vector3(coords.x,coords.y,coords.z));
     return this;
   },
 
@@ -311,7 +321,7 @@ App.World3DView = App.Object3DView.extend({
     }).render(scene));
 
     this.set('childViews.treat', App.Voxel3DView.create({
-      color: 0x00cc00,
+      color: 0x44dd44,
       context: this.get('context.controllers.treat')
     }).render(scene));
   },
@@ -321,7 +331,7 @@ App.World3DView = App.Object3DView.extend({
 })
 
 App.World3DRenderer = App.Object3DView.extend({
-  backgroundColor: 0x181450,
+  backgroundColor: 0x10104a,
   renderer: function() {
     var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setClearColor(this.get('backgroundColor'), 1);
@@ -344,6 +354,8 @@ App.World3DRenderer = App.Object3DView.extend({
         self.set('worldView.childViews.player.key', alias);
       }
     });
+var camera = this.get('worldView.childViews.player.camera');
+
     this.get('renderer').render(this.get('worldView.scene'), this.get('worldView.childViews.player.camera'));
   },
 
