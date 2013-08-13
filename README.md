@@ -10,7 +10,7 @@ Danger! Work in progress!
 ### Snake control
 
 - wasd (or arrow keys) for the boring dimensions
-- Combinations for 3rd dimension
+- Key combinations for 3rd dimension
   - ws: farther
   - ad: closer
 
