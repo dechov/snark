@@ -17,7 +17,7 @@ Danger! Work in progress!
 
 ### View control
 
-- Local panning by moving the mouse
+- Local panning by moving the mouse (as a depth perception aid)
 - Gestures for rotation
   - Click+swipe: move around celestial sphere
   - Click+circle: rotate 90 degrees
